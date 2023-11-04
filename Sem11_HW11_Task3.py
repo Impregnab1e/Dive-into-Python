@@ -1,0 +1,62 @@
+class Rectangle:
+    def __init__(self, width, height=None):
+        if height is None:
+            height = width
+        self.width = width
+        self.height = height
+
+    def perimeter(self):
+        return 2 * (self.width + self.height)
+
+    def area(self):
+        return self.width * self.height
+
+    def __add__(self, other):
+        new_width = self.width + other.width
+        new_height = self.height + other.height
+        return Rectangle(new_width, new_height)
+
+    def __sub__(self, other):
+        new_width = abs(self.width - other.width)
+        new_height = abs(self.height - other.height)
+        return Rectangle(new_width, new_height)
+
+    def __lt__(self, other):
+        return self.area() < other.area()
+
+    def __eq__(self, other):
+        return self.area() == other.area()
+
+    def __le__(self, other):
+        return self.area() <= other.area()
+
+    def __str__(self):
+        return f"Прямоугольник со сторонами {self.width} и {self.height}"
+
+    def __repr__(self):
+        return f"Rectangle({self.width}, {self.height})"
+
+
+rect1 = Rectangle(4, 5)
+rect2 = Rectangle(3, 3)
+
+print(rect1)
+print(rect2)
+
+print(rect1.perimeter())
+print(rect1.area())
+print(rect2.perimeter())
+print(rect2.area())
+
+rect_sum = rect1 + rect2
+rect_diff = rect1 - rect2
+
+print(rect_sum)
+print(rect_diff)
+
+print(rect1 < rect2)
+print(rect1 == rect2)
+print(rect1 <= rect2)
+
+print(repr(rect1))
+print(repr(rect2))
